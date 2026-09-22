@@ -38,6 +38,37 @@ router.post('/addNotes', fetchuser, [
          console.log(e.message)
             res.status(500).send("Some error occured")
     }
+})
 
+//Route 3 updating the notes: Post "/api/notes/updateNotes". to login required
+router.put('/updateNotes/:id', fetchuser,
+    async (req, res) => {
+
+    try {
+        const {title, description, tag } = req.body;
+
+        //create the newNote object
+        const newNote = {};
+        if (title){newNote.title = title};
+        if (description){newNote.description = description};
+        if (tag){newNote.tag = tag};
+
+        //find the note to be updated and update it
+        let note = await Notes.findById(req.params.id)
+        if (!note){return res.status(404).send("Not Found")}
+
+        if (note.user.toString() !== req.user.id){
+            return res.status(401).send("Not Allowed")
+        }
+
+        note = await Notes.findByIdAndUpdate(req.params.id,
+            {$set: newNote},
+            {returnDocument: 'after'})
+        res.json({note})
+
+    }catch (e) {
+         console.log(e.message)
+            res.status(500).send("Some error occured")
+    }
 })
 module.exports = router
