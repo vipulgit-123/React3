@@ -77,7 +77,7 @@ router.delete('/deleteNotes/:id', fetchuser,
     async (req, res) => {
 
     try {
-        const {title, description, tag } = req.body;
+        // const {title, description, tag } = req.body;
 
         //find the note to be updated and update it
         let note = await Notes.findById(req.params.id)

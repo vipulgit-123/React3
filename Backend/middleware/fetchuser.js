@@ -6,13 +6,13 @@ const fetchuser = (req, res,next) => {
 
     const token = req.header('auth-token')
     if (!token){
-        res.status(401).send({error:"Please authenticate using a valid token"})
+       return res.status(401).send({error:"Please authenticate using a valid token"})
     }
     try {
         const data = jwt.verify(token, JWT_Secret)
     req.user = data.user;
     next()
-    }catch (e) { res.status(401).send({error:"Please authenticate using a valid token"})
+    }catch (e) { return res.status(401).send({error:"Please authenticate using a valid token"})
     }
 
 }
