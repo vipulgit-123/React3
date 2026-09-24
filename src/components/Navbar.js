@@ -1,11 +1,10 @@
-import React, {useEffect} from "react";
-import {Link, useLocation} from "react-router-dom";
+import React, { useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
 
 const Navbar = () => {
-
-  let location = useLocation()
+  let location = useLocation();
   useEffect(() => {
-    console.log(location)
+    console.log(location);
   }, [location]);
 
   return (
@@ -30,16 +29,18 @@ const Navbar = () => {
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
                 <Link
-                  className={`nav-link ${location.pathname==="/"? "active": ""}`}
+                  className={`nav-link ${location.pathname === "/home" ? "active" : ""}`}
                   aria-current="page"
-                  to="/"
+                  to="/home"
                 >
                   Home
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className={`nav-link ${location.pathname==="/about"? "active": ""}`}
-                      to="/about">
+                <Link
+                  className={`nav-link ${location.pathname === "/about" ? "active" : ""}`}
+                  to="/about"
+                >
                   About
                 </Link>
               </li>
