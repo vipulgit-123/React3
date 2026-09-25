@@ -4,6 +4,7 @@ import About from "./components/About";
 import Home from "./components/Home";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import NoteState from "./context/Notes/NoteState";
+import Alert from "./components/Alert";
 
 function App() {
   return (
@@ -11,7 +12,8 @@ function App() {
       <NoteState>
         <Router>
           <Navbar />
-          <div className="App">
+            <Alert message="This is iNoteBook"/>
+          <div className="container">
             <Routes>
                 <Route path="/" element={<Home />} />
               <Route exact path="/home" element={<Home />} />
