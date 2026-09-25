@@ -12,14 +12,14 @@ code {
     monospace;
 }
 
-/*i {*/
-/*  cursor: pointer;*/
-/*}*/
-
 .fa-trash-can {
-  cursor: pointer !important;
+  color: red;
 }
 
 .fa-pen-to-square {
-  cursor: pointer !important;
+  color: blue;
+}
+
+button {
+  cursor: pointer;
 }
