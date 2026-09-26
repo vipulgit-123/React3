@@ -5,11 +5,12 @@ const AddNotes = () => {
     const context = useContext(noteContext);
   const { addNotes } = context;
 
-  const [note,setnote] = useState({title:"",description:"",tag:"default"})
+  const [note,setnote] = useState({title:"",description:"",tag:""})
 
   const handleClick =(e) =>{
     e.preventDefault()
      addNotes(note.title,note.description,note.tag)
+    setnote({title:"",description:"",tag:""})
   }
 
   const onChange=(e)=>{
@@ -29,6 +30,7 @@ const AddNotes = () => {
               className="form-control"
               id="title"
               name="title"
+              value={note.title}
               aria-describedby="emailHelp"
               minLength={5} required
               onChange={onChange}
@@ -46,6 +48,7 @@ const AddNotes = () => {
               className="form-control"
               id="description"
               name="description"
+              value={note.description}
               minLength={5} required
               onChange={onChange}
             />
@@ -59,6 +62,7 @@ const AddNotes = () => {
               className="form-control"
               id="tag"
               name="tag"
+              value={note.tag}
               onChange={onChange}
             />
           </div>
