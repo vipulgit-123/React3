@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import {useNavigate} from "react-router-dom";
 
 const Login = () => {
 
@@ -7,7 +8,7 @@ const Login = () => {
     password: ""
 });
 
-    let useHistory=  useHistory();
+   const navigate = useNavigate();
 
      let host = "http://localhost:5000";
     const handleSubmit= async (e)=>{
@@ -26,12 +27,11 @@ const Login = () => {
     const json = await response.json();
     console.log(json);
 
-    if(json.success){
+    if(json.authtoken){
         //Save the  authToekn and redirect it
         localStorage.setItem('token',json.authtoken)
-        history.push()
-    }else
-    {
+          navigate("/home");
+    }else {
         alert("Invalid Credentials")
     }
     }

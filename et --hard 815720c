@@ -1,0 +1,38 @@
+[33m9ef795f[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m HEAD@{0}: reset: moving to HEAD~1
+[33m815720c[m HEAD@{1}: commit: login done
+[33m9ef795f[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m HEAD@{2}: commit: HardCode value in Login
+[33m052b57d[m HEAD@{3}: commit: Adding Login/SignUp component in iNoteBook
+[33m0a80cc0[m HEAD@{4}: commit: Clearing the label
+[33m8859d44[m HEAD@{5}: commit: Adding Some Validation
+[33ma452763[m HEAD@{6}: commit: Finishing the modal for the editing note
+[33md69c54d[m HEAD@{7}: commit: Adding the modal to in the editing note
+[33m45cca8c[m HEAD@{8}: commit: Delete notes from backend
+[33m4cc4f47[m HEAD@{9}: commit: fetch Notes from backendw
+[33m8b553ca[m HEAD@{10}: commit: fixing Cors error
+[33m05f84f2[m HEAD@{11}: commit: Adding delete note to the application
+[33md2a91ce[m HEAD@{12}: commit: Adding AddNote to the Component
+[33m84175ac[m HEAD@{13}: commit: Adding Fonts icon and Alert
+[33mcbd3e56[m HEAD@{14}: commit: update
+[33m250b4f0[m HEAD@{15}: commit: Adding NoteItem
+[33m5f2a8dc[m HEAD@{16}: commit: fetching notes to context - frontend
+[33mf100701[m HEAD@{17}: commit: update in backend
+[33mfe47e84[m HEAD@{18}: commit: Adding use loction hook
+[33mc26384e[m HEAD@{19}: commit: Context API Uses
+[33md07183b[m HEAD@{20}: commit: frontend Initials
+[33m03e4617[m HEAD@{21}: commit: Adding dependencies of running both on same server
+[33m1564b81[m HEAD@{22}: commit: Delete End Point
+[33m33a8bf0[m HEAD@{23}: commit: Update end Point
+[33m4d0245b[m HEAD@{24}: commit: adding Notes of the user
+[33m7ed67cd[m HEAD@{25}: commit: fetchallNotes of the user
+[33m8ee896b[m HEAD@{26}: commit: Adding New Route
+[33m1816c81[m HEAD@{27}: commit: Login endpoint and sending AuthToken
+[33mdb0c8a8[m HEAD@{28}: commit: JWT Token
+[33mb597808[m HEAD@{29}: commit: hasing Passwords
+[33mf832b27[m HEAD@{30}: commit: update3
+[33m25d2611[m HEAD@{31}: commit: update2
+[33me3ff0bd[m HEAD@{32}: commit: update
+[33m7266084[m HEAD@{33}: commit: user saved in DB
+[33m1eaa929[m HEAD@{34}: commit: backed
+[33m4b66cce[m HEAD@{35}: commit: Server conected and Giving Output
+[33m392f9da[m HEAD@{36}: commit: ackend modules added
+[33mb5c3d40[m HEAD@{37}: commit (initial): Initial commit
