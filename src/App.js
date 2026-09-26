@@ -17,7 +17,7 @@ function App() {
             <Alert message="This is iNoteBook"/>
           <div className="container">
             <Routes>
-                <Route path="/" element={<Home />} />
+                <Route path="/" element={<Login />} />
               <Route exact path="/home" element={<Home />} />
               <Route exact path="/about" element={<About />} />
               <Route exact path="/login" element={<Login />} />
