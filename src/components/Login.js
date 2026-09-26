@@ -1,35 +1,60 @@
-import React from 'react'
+import React, {useState} from 'react'
 
 const Login = () => {
+
+   const [credentials, setCredentials] = useState({
+    email: "",
+    password: ""
+});
+
+    let useHistory=  useHistory();
+
      let host = "http://localhost:5000";
     const handleSubmit= async (e)=>{
         e.preventDefault();
-         const response = await fetch(`${host}/api/auth/getUser`, {
+         const response = await fetch(`${host}/api/auth/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "auth-token":
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9." +
-          "eyJ1c2VyIjp7ImlkIjoiNmFiNTA1ZmRmOGZhOWZkMTMyOGU1NTVhIn0sImlhdCI6MTc5MDI0ODQ0NX0." +
-          "vknLNMKf2NdHbWk24ZSzSSdduhUNLYFBKqm63TpQxzo",
       },
+               body: JSON.stringify({
+        email: credentials.email,
+        password: credentials.password
+    })
+
     });
     const json = await response.json();
     console.log(json);
+
+    if(json.success){
+        //Save the  authToekn and redirect it
+        localStorage.setItem('token',json.authtoken)
+        history.push()
+    }else
+    {
+        alert("Invalid Credentials")
     }
+    }
+
+     const onChange = (e) => {
+   setCredentials({
+            ...credentials,
+            [e.target.name]: e.target.value
+        })
+  };
 
   return (
       <div>
           <form onSubmit={handleSubmit}>
               <div className="mb-3">
                   <label htmlFor="email" className="form-label">Email address</label>
-                  <input type="email" className="form-control" id="email" name="email" aria-describedby="emailHelp"/>
+                  <input type="email" className="form-control" value={credentials.email} id="email" name="email" aria-describedby="emailHelp" onChange={onChange}/>
                   <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div>
               </div>
 
               <div className="mb-3">
                   <label htmlFor="password" className="form-label">Password</label>
-                  <input type="password" className="form-control" name="password" id="exampleInputPassword1"/>
+                  <input type="password" className="form-control" value={credentials.password} name="password" id="exampleInputPassword1" onChange={onChange}/>
               </div>
 
               <button type="submit" className="btn btn-primary" >Submit</button>

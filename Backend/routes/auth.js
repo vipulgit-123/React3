@@ -7,6 +7,7 @@ const { body, validationResult } = require('express-validator');
 const bcrypt = require('bcrypt');
 var jwt = require('jsonwebtoken');
 var fetchuser  = require('../middleware/fetchuser')
+const {success} = require("concurrently/dist/lib/defaults");
 
 const JWT_Secret = '#@IamABaDBoy#BAD_BOY'
 // Route1-Create a user using: POST "/api/auth/". Doesn't require Auth
@@ -61,7 +62,7 @@ router.post('/login',[
      body('email','Enter a valid email').isEmail(),
     body('password','Password can`t be blank').exists(),
 ], async (req, res) => {
-
+    let success = false;
     const errors = validationResult(req);
         if (!errors.isEmpty()) {
             return res.status(400).json({errors: errors.array()});
@@ -70,10 +71,14 @@ router.post('/login',[
         const {email,password} = req.body;
         try{
             let user = await User.findOne({email})
-            if (!user){return  res.status(400).json({error:"Please try to login via right credentials"})}
+            if (!user){
+                 success = false
+                return  res.status(400).json({success, error:"Please try to login via right credentials"})}
 
             const passCompare = await bcrypt.compare(password,user.password)
-            if (!passCompare){return res.status(400).json({error:"Please try to login via right credentials"})}
+            if (!passCompare){
+                success = false
+                return res.status(400).json({success, error:"Please try to login via right credentials"})}
 
             const data ={
                   user:
