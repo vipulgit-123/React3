@@ -40,7 +40,6 @@ const NoteState = (props) => {
           "vknLNMKf2NdHbWk24ZSzSSdduhUNLYFBKqm63TpQxzo",
       },
       body: JSON.stringify({ title, description, tag }),
-      // …
     });
 
     const data = await response.json();
@@ -79,12 +78,12 @@ const NoteState = (props) => {
   };
 
   //Edit a Note
-  const edtNotes = async (id, title, description, tag) => {
+  const editNotes = async (id, title, description, tag) => {
     // ToDo: Api calling
     //logic to edit in client, here we use fetch api
 
     const response = await fetch(`${host}/api/notes/updateNotes/${id}`, {
-      method: "POST",
+      method: "PUT",
       headers: {
         "Content-Type": "application/json",
         "auth-token":
@@ -95,22 +94,31 @@ const NoteState = (props) => {
       body: JSON.stringify({ title, description, tag }),
       // …
     });
-    const json = await response.json();
+    const data = await response.json();
 
-    // here we use for loop
-    for (let index = 0; index < notes.length; index++) {
-      const element = notes[index];
-      if (element._id === id) {
-        element.title = title;
-        element.description = description;
-        element.tag = tag;
-      }
-    }
+     if (response.ok) {
+    setNotes(
+      notes.map((element) => {
+        if (element._id === id) {
+          return {
+            ...element,
+            title: title,
+            description: description,
+            tag: tag,
+          };
+        }
+
+        return element;
+      })
+    );
+  } else {
+    console.log("Error:", data);
+  }
   };
 
   return (
     <NoteContext.Provider
-      value={{ notes, addNotes, dltNotes, edtNotes, getNotes }}
+      value={{ notes, addNotes, dltNotes, editNotes, getNotes }}
     >
       {props.children}
     </NoteContext.Provider>

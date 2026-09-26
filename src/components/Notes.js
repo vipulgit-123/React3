@@ -5,17 +5,20 @@ import AddNotes from "./AddNotes";
 
 const Notes = () => {
   const context = useContext(noteContext);
-  const [note, setnote] = useState({ etitle: "", edescription: "", etag: "" });
+  const [note, setnote] = useState({id:"", etitle: "", edescription: "", etag: "" });
 
-  const { notes, getNotes } = context;
+  const { notes, getNotes, editNotes } = context;
 
   useEffect(() => {
     getNotes();
   }, []);
 
   const updateNote = (currentNote) => {
+      console.log("Current Note:", currentNote);
+  console.log("Current Note ID:", currentNote._id);
     ref.current.click();
     setnote({
+        id: currentNote._id,
     etitle: currentNote.title || "",
     edescription: currentNote.description || "",
     etag: currentNote.tag || ""
@@ -23,10 +26,16 @@ const Notes = () => {
 
   };
 
-  const handleClick = (e) => {
-      console.log("Updating the note")
+  const handleClick = async (e) => {
       e.preventDefault();
-      console.log(note);
+          console.log("Note before update:", note);
+  console.log("ID before update:", note.id);
+        await editNotes(
+            note.id,
+            note.etitle,
+            note.edescription,
+            note.etag)
+      refClose.current.click()
   };
 
   const onChange = (e) => {
@@ -34,6 +43,7 @@ const Notes = () => {
   };
 
   const ref = useRef(null);
+  const refClose = useRef(null);
 
   return (
     <>
@@ -117,6 +127,7 @@ const Notes = () => {
             </div>
             <div className="modal-footer">
               <button
+                  ref={refClose}
                 type="button"
                 className="btn btn-secondary"
                 data-bs-dismiss="modal"

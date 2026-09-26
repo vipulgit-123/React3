@@ -16,7 +16,7 @@ const Noteitem = (props) => {
               <i className="fa-solid fa-trash-can"></i>
             </button>
             <button type="button" className="btn btn-link p-0 mx-2"
-                    onClick={() => {console.log("EDIT BUTTON CLICKED", notes._id); updateNotes(notes._id); }}>
+                    onClick={() => {console.log("EDIT BUTTON CLICKED", notes._id); updateNotes(notes); }}>
                <i className="fa-solid fa-pen-to-square mx-2"></i>
             </button>
 
