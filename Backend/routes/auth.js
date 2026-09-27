@@ -1,5 +1,4 @@
 const express = require('express')
-const mongoose = require("mongoose");
 const User = require('../models/User')
 const router = express.Router()
 const { body, validationResult } = require('express-validator');
@@ -20,7 +19,9 @@ router.post('/createuser',[
       //If there are errors, return bad request amd the errors
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
-            return res.status(400).json({errors: errors.array()});
+            return res.status(400).json({
+                 success:false,
+                errors: errors.array()});
         }
 
         //check whether the user with this email exist already
@@ -29,7 +30,9 @@ router.post('/createuser',[
 
             let user = await User.findOne({email: req.body.email});
             if (user) {
-                return res.status(400).json({errors: "Sorry a user with this email already exists"})
+                return res.status(400).json({
+                     success:false,
+                    errors: "Sorry a user with this email already exists"})
             }
             const salt = await bcrypt.genSalt(10);
             const secPass = await bcrypt.hash(req.body.password,salt)
@@ -46,7 +49,9 @@ router.post('/createuser',[
             }
             const authtoken = jwt.sign(data, JWT_Secret)
             console.log(authtoken)
-            res.json({authtoken})
+            res.json({
+                 success:true,
+                authtoken})
 
         }catch (e) {
             console.log(e.message)
@@ -60,6 +65,8 @@ router.post('/login',[
      body('email','Enter a valid email').isEmail(),
     body('password','Password can`t be blank').exists(),
 ], async (req, res) => {
+
+     console.log("LOGIN BODY:", req.body);
 
     const errors = validationResult(req);
         if (!errors.isEmpty()) {

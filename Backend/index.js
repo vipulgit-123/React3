@@ -7,9 +7,6 @@ const app = express()
 const port = 5000
 
 app.use(cors());
-app .use(express.json());
-
-
 //middleware
 app.use(express.json()) //if u want to use req.body then we have to use this middleware
 
