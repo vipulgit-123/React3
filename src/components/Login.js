@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import {getKeyEventProps} from "@testing-library/user-event/dist/keyboard/getEventProps";
 
 const Login = (props) => {
   const [credentials, setCredentials] = useState({

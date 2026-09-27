@@ -31,7 +31,7 @@ function App() {
             <Alert alert={alert}/>
           <div className="container">
             <Routes>
-                <Route path="/" element={<Login />} />
+                <Route path="/" element={<Login showAlert={showAlert}/>} />
               <Route exact path="/home" element={<Home showAlert={showAlert} />} />
               <Route exact path="/about" element={<About />} />
               <Route exact path="/login" element={<Login showAlert={showAlert}/>} />
