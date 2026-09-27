@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import {getKeyEventProps} from "@testing-library/user-event/dist/keyboard/getEventProps";
 
-const Login = () => {
+const Login = (props) => {
   const [credentials, setCredentials] = useState({
     email: "",
     password: "",
@@ -25,13 +26,19 @@ const Login = () => {
     const json = await response.json();
     console.log(json);
 
-    if (json.authtoken) {
-      //Save the  authToekn and redirect it
-      localStorage.setItem("token", json.authtoken);
-      navigate("/home");
-    } else {
-      alert(json.errors || "Invalid Credentials");
-    }
+  if (json.authtoken) {
+    // Save auth token
+    localStorage.setItem("token", json.authtoken);
+
+    // Redirect to home
+    navigate("/home");
+
+    // Show success message
+    props.showAlert(json.message || "Login Successfully", "success");
+} else {
+    // Show error message
+    props.showAlert(json.error || "Invalid Credentials", "danger");
+}
   };
 
   const onChange = (e) => {

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const SignUp = () => {
+const SignUp = (props) => {
   const [credentials, setCredentials] = useState({
     name: "",
     email: "",
@@ -14,7 +14,7 @@ const SignUp = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (credentials.password !== credentials.cPassword) {
-      alert("Passwords do not match");
+       props.showAlert("Passwords do not match", "danger");
       return;
     }
 
@@ -35,9 +35,12 @@ const SignUp = () => {
       console.log(json);
 
       if (response.ok && json.authtoken) {
+        // Redirect to home
         navigate("/login");
+        // Show success message
+        props.showAlert(json.message || "Account Created Successfully  ", "success");
       } else {
-        alert(json.errors || "SignUp Failed....");
+        props.showAlert(json.error || "  Signup Failed (Invalid Credentials) .......  ", "danger");
       }
     } catch (error) {
       console.error(error);
