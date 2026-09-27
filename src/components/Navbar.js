@@ -1,9 +1,13 @@
 import React from "react";
-import {Link, useLocation, useNavigate} from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   let location = useLocation();
-      const navigate = useNavigate()
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    navigate("/login");
+  };
   return (
     <div>
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -62,11 +66,7 @@ const Navbar = () => {
             ) : (
               <button
                 className="btn btn-primary mx-1"
-                onClick={() => {
-                  localStorage.removeItem("token");
-                  navigate("/login");
-                }}
-              >
+                onClick={handleLogout}>
                 Logout
               </button>
             )}
